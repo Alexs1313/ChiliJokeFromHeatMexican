@@ -85,7 +85,6 @@ const Chiijokefromemxicnnonb = () => {
           paddingBottom: 40,
         }}>
         <View style={styles.chiijokefromemxicnnTopRow}>
-          <View />
           <Pressable
             onPress={chiijokefromemxicnnGoToApp}
             hitSlop={10}
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     position: 'absolute',
     zIndex: 5,
-    top: 40,
+    top: 35,
     right: 10,
   },
   chiijokefromemxicnnSkipBtn: {
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: 'hidden',
   },
-  chiijokefromemxicnnHeroImage: {alignSelf: 'center'},
+  chiijokefromemxicnnHeroImage: {alignSelf: 'center', marginTop: 10},
 
   chiijokefromemxicnnCard: {
     paddingHorizontal: 20,

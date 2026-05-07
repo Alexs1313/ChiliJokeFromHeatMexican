@@ -451,6 +451,7 @@ const Chiijokefromemxicnngmp = () => {
                 multiline
                 maxLength={240}
                 style={styles.chiijokefromemxicnnInput}
+                textAlignVertical="top"
               />
             </View>
 

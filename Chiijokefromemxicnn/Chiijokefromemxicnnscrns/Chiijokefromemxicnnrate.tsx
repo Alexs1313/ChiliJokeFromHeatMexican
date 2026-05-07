@@ -191,12 +191,12 @@ const Chiijokefromemxicnnrate = () => {
     setChiijokefromemxicnnScore(null);
     setChiijokefromemxicnnVerdict(null);
     setChiijokefromemxicnnResultText(null);
+    setChiijokefromemxicnnJoke('');
   };
 
   useFocusEffect(
     useCallback(() => {
       chiijokefromemxicnnReset();
-      setChiijokefromemxicnnJoke('');
     }, []),
   );
 
@@ -274,6 +274,7 @@ const Chiijokefromemxicnnrate = () => {
                 multiline
                 maxLength={500}
                 style={styles.chiijokefromemxicnnInput}
+                textAlignVertical="top"
               />
               <Text style={styles.chiijokefromemxicnnCounter}>
                 {chiijokefromemxicnnJoke.length}/500

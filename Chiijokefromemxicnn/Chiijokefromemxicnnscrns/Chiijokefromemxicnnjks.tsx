@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   chiijokefromemxicnnScrollContent: {
     paddingHorizontal: 20,
-    paddingBottom: 110,
+    paddingBottom: 155,
   },
 
   chiijokefromemxicnnHeader: {
