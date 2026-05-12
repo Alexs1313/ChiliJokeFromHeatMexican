@@ -227,6 +227,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  chiijokefromemxicnnButton: {
+    flex: 1,
+  },
   chiijokefromemxicnnBar: {
     elevation: 0,
     paddingTop: 10,
@@ -242,9 +245,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-  chiijokefromemxicnnButton: {
-    flex: 1,
-  },
   chiijokefromemxicnnButtonInner: {
     flex: 1,
     alignItems: 'center',

@@ -2,6 +2,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import React, {useMemo, useState} from 'react';
 
+import {chiijokefromemxicnnGmpPrompts} from '../Chiijokefromemxicnndata/chiijokefromemxicnndatagmp';
 import {
   Image,
   Pressable,
@@ -18,32 +19,6 @@ const Chiijokefromemxicnngmp = () => {
     useState<3 | 4 | 5>(3);
   const [chiijokefromemxicnnPlayerNames, setChiijokefromemxicnnPlayerNames] =
     useState<string[]>(['', '', '']);
-
-  const chiijokefromemxicnnPrompts = useMemo(
-    () => [
-      'Carlos opened the fridge at 2 AM and suddenly saw a dancing taco that whispered…',
-      'Maria walked into the kitchen and found her grandmother teaching the family cactus how to sing…',
-      'During the village fiesta, the mariachi band suddenly stopped playing because…',
-      'Miguel tried to impress everyone with his cooking skills, but after one loud explosion…',
-      'The mysterious hot sauce bottle came with a warning label that said…',
-      'Three friends entered the taco eating contest, but halfway through the challenge…',
-      'Juan bought the cheapest sombrero at the market and discovered it could actually…',
-      'The old donkey escaped during the celebration and somehow ended up…',
-      'When Sofia opened her burrito, she was shocked to find…',
-      'The waiter smiled nervously after the customer asked why the tacos were glowing…',
-      'During karaoke night, the shyest person in the restaurant suddenly grabbed the microphone and…',
-      'Pedro tried to fix the broken blender, but instead he accidentally created…',
-      'The family dinner became very quiet when Grandpa slowly stood up and announced…',
-      'A tourist asked for ‘mild salsa,’ but the chef misunderstood and brought…',
-      'The village talent show was going normally until someone released…',
-      'Carlos challenged his cousin to a spicy pepper duel, but after the first bite…',
-      'The tiny street dog stole a taco and then surprisingly…',
-      'While cleaning the attic, Rosa discovered an old guitar that magically…',
-      'The new cook promised the best burritos in Mexico, but nobody expected…',
-      'At midnight, the taco truck owner heard strange music coming from inside the kitchen and saw…',
-    ],
-    [],
-  );
 
   const [chiijokefromemxicnnPhase, setChiijokefromemxicnnPhase] = useState<
     'setup' | 'write' | 'vote' | 'result'
@@ -72,7 +47,7 @@ const Chiijokefromemxicnngmp = () => {
   const chiijokefromemxicnnPrompt =
     chiijokefromemxicnnPromptIdx === null
       ? ''
-      : chiijokefromemxicnnPrompts[chiijokefromemxicnnPromptIdx] ?? '';
+      : chiijokefromemxicnnGmpPrompts[chiijokefromemxicnnPromptIdx] ?? '';
 
   const chiijokefromemxicnnAllNamesFilled = chiijokefromemxicnnPlayerNames
     .slice(0, chiijokefromemxicnnPlayerCount)
@@ -102,7 +77,7 @@ const Chiijokefromemxicnngmp = () => {
       return;
     }
     setChiijokefromemxicnnPromptIdx(
-      Math.floor(Math.random() * chiijokefromemxicnnPrompts.length),
+      Math.floor(Math.random() * chiijokefromemxicnnGmpPrompts.length),
     );
     setChiijokefromemxicnnVotes(
       new Array(chiijokefromemxicnnPlayerCount).fill(0),
