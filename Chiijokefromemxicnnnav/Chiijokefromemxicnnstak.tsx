@@ -1,9 +1,9 @@
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Chiijokefromemxicnntab from '../../Chiijokefromemxicnntab.tsx';
+import Chiijokefromemxicnntab from '../Chiijokefromemxicnntab/Chiijokefromemxicnntab.tsx';
 import Chiijokefromemxicnnonb from '../Chiijokefromemxicnnscrns/Chiijokefromemxicnnonb.tsx';
 import Chiijokefromemxicnnjksdtl from '../Chiijokefromemxicnnscrns/Chiijokefromemxicnnjksdtl.tsx';
-import Chiijokefromemxicnnload from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnload.tsx';
+import Chiijokefromemxicnnload from '../Chiijokefromemxicnnshell/Chiijokefromemxicnnload.tsx';
 import Chiijokefromemxicnnstrsdtl from '../Chiijokefromemxicnnscrns/Chiijokefromemxicnnstrsdtl.tsx';
 
 const Stack = createStackNavigator();

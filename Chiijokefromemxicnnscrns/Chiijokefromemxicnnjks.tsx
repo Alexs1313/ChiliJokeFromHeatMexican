@@ -61,7 +61,7 @@ const Chiijokefromemxicnnjks = () => {
             <View style={styles.chiijokefromemxicnnMiguelRow}>
               <View style={styles.chiijokefromemxicnnMiguelAvatar}>
                 <Image
-                  source={require('../../assets/i/chiijokefromemximigl.png')}
+                  source={require('../assets/i/chiijokefromemximigl.png')}
                 />
               </View>
               <View style={styles.chiijokefromemxicnnMiguelTextCol}>

@@ -25,14 +25,14 @@ const Chiijokefromemxicnnload = () => {
 
   return (
     <ImageBackground
-      source={require('../../assets/i/chiijokefromemxicloadbg.png')}
+      source={require('../assets/i/chiijokefromemxicloadbg.png')}
       style={styles.chiijokefromemxicnnimageBg}>
       <ScrollView
         contentContainerStyle={styles.chiijokefromemxicnnscrollContent}
         showsVerticalScrollIndicator={false}>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Image
-            source={require('../../assets/i/chiijokefromemxicload.png')}
+            source={require('../assets/i/chiijokefromemxicload.png')}
             style={{width: 200, height: 200, borderRadius: 48}}
           />
         </View>

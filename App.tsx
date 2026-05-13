@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 
-import Chiijokefromemxicnnstak from './Chiijokefromemxicnn/Chiijokefromemxicnnnav/Chiijokefromemxicnnstak.tsx';
+import Chiijokefromemxicnnstak from './Chiijokefromemxicnnnav/Chiijokefromemxicnnstak.tsx';
 
 const App = () => {
   return (

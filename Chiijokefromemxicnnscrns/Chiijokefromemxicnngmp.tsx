@@ -260,7 +260,7 @@ const Chiijokefromemxicnngmp = () => {
               style={styles.chiijokefromemxicnnHowToCard}>
               <View style={styles.chiijokefromemxicnnHowToInner}>
                 <Image
-                  source={require('../../assets/i/chiijokefromlgm.png')}
+                  source={require('../assets/i/chiijokefromlgm.png')}
                   style={{marginRight: 4}}
                 />
                 <View style={styles.chiijokefromemxicnnHowToCol}>

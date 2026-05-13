@@ -137,7 +137,7 @@ const Chiijokefromemxicnnsvd = () => {
         ) : (
           <View style={styles.chiijokefromemxicnnEmpty}>
             <Image
-              source={require('../../assets/i/chiijokefromemximemptsvd.png')}
+              source={require('../assets/i/chiijokefromemximemptsvd.png')}
               style={styles.chiijokefromemxicnnEmptyImage}
               resizeMode="contain"
             />

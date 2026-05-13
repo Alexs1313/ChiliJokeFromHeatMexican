@@ -3,11 +3,11 @@ import {useNavigation} from '@react-navigation/native';
 import {Image, ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
 import {chiijokefromemxicnnOnbSteps} from '../Chiijokefromemxicnndata/chiijokefromemxicnndataonb';
-import Chiijokefromemxicnnonbcard from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnonbcard';
-import Chiijokefromemxicnnonbghostbtn from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnonbghostbtn';
-import Chiijokefromemxicnnonbprimarybtn from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnonbprimarybtn';
-import Chiijokefromemxicnnonbskipbtn from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnonbskipbtn';
-import Chiijokefromemxicnnonbstepdots from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnonbstepdots';
+import Chiijokefromemxicnnonbcard from '../Chiijokefromemxicnntonb/Chiijokefromemxicnnonbcard';
+import Chiijokefromemxicnnonbghostbtn from '../Chiijokefromemxicnntonb/Chiijokefromemxicnnonbghostbtn';
+import Chiijokefromemxicnnonbprimarybtn from '../Chiijokefromemxicnntonb/Chiijokefromemxicnnonbprimarybtn';
+import Chiijokefromemxicnnonbskipbtn from '../Chiijokefromemxicnntonb/Chiijokefromemxicnnonbskipbtn';
+import Chiijokefromemxicnnonbstepdots from '../Chiijokefromemxicnntonb/Chiijokefromemxicnnonbstepdots';
 
 const Chiijokefromemxicnnonb = () => {
   const navigation = useNavigation();
@@ -34,7 +34,7 @@ const Chiijokefromemxicnnonb = () => {
 
   return (
     <ImageBackground
-      source={require('../../assets/i/chiijokefromemxiconbg.png')}
+      source={require('../assets/i/chiijokefromemxiconbg.png')}
       style={styles.chiijokefromemxicnnRoot}>
       <ScrollView
         showsVerticalScrollIndicator={false}

@@ -131,7 +131,7 @@ const Chiijokefromemxicnnrate = () => {
               style={styles.chiijokefromemxicnnJudgeCard}>
               <View style={styles.chiijokefromemxicnnJudgeRow}>
                 <Image
-                  source={require('../../assets/i/chiijokefromemxrat.png')}
+                  source={require('../assets/i/chiijokefromemxrat.png')}
                   style={styles.chiijokefromemxicnnJudgeAvatar}
                 />
                 <View style={styles.chiijokefromemxicnnJudgeTextCol}>
@@ -202,7 +202,7 @@ const Chiijokefromemxicnnrate = () => {
         {chiijokefromemxicnnPhase === 'loading' ? (
           <View style={styles.chiijokefromemxicnnLoadingWrap}>
             <Image
-              source={require('../../assets/i/chiijokefromload.png')}
+              source={require('../assets/i/chiijokefromload.png')}
               style={styles.chiijokefromemxicnnLoadingMiguel}
               resizeMode="contain"
             />
@@ -256,8 +256,8 @@ const Chiijokefromemxicnnrate = () => {
                 <Image
                   source={
                     chiijokefromemxicnnVerdict === 'good'
-                      ? require('../../assets/i/chiijokefromemyes.png')
-                      : require('../../assets/i/chiijokefromemno.png')
+                      ? require('../assets/i/chiijokefromemyes.png')
+                      : require('../assets/i/chiijokefromemno.png')
                   }
                   style={styles.chiijokefromemxicnnResultMiguel}
                   resizeMode="contain"

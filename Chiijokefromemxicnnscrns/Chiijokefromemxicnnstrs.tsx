@@ -96,7 +96,7 @@ const Chiijokefromemxicnnstrs = () => {
             <View style={styles.chiijokefromemxicnnMiguelRow}>
               <View style={styles.chiijokefromemxicnnMiguelAvatar}>
                 <Image
-                  source={require('../../assets/i/chiijokefromemximigl.png')}
+                  source={require('../assets/i/chiijokefromemximigl.png')}
                   style={styles.chiijokefromemxicnnMiguelImg}
                   resizeMode="contain"
                 />
