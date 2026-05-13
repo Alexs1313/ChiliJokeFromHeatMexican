@@ -4,17 +4,17 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: VervoortHugoAPIKey
+      app_store_connect: VervoortHugoNewAPIKey
     environment:
       xcode: '26.0'
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.gjkfr.pptotur.turafe
+        bundle_identifier: com.jgkfuyr.llfkqir.itor
       vars:
-        BUNDLE_ID: com.gjkfr.pptotur.turafe
+        BUNDLE_ID: com.jgkfuyr.llfkqir.itor
         XCODE_WORKSPACE: ChiliJokeFromHeatMexican.xcworkspace
         XCODE_SCHEME: ChiliJokeFromHeatMexican
-        APP_STORE_APPLE_ID: 6769044870
+        APP_STORE_APPLE_ID: 6769084885
     scripts:
       - name: Install npm dependencies
         script: |
