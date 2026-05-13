@@ -32,7 +32,7 @@ const Chiijokefromemxicnnload = () => {
         showsVerticalScrollIndicator={false}>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Image
-            source={require('../../assets/i/chiijokefromemxicload.png')}
+            source={require('../../assets/i/chiijokefromemxiconb2.png')}
             style={{}}
           />
         </View>

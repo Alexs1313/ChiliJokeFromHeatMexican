@@ -15,6 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Chiijokefromemxicnnback from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnback';
 
 const Chiijokefromemxicnnjks = () => {
   const navigation = useNavigation() as any;
@@ -35,7 +36,7 @@ const Chiijokefromemxicnnjks = () => {
   };
 
   return (
-    <View style={styles.chiijokefromemxicnnRoot}>
+    <Chiijokefromemxicnnback>
       <ScrollView
         style={styles.chiijokefromemxicnnScroll}
         contentContainerStyle={styles.chiijokefromemxicnnScrollContent}
@@ -79,57 +80,59 @@ const Chiijokefromemxicnnjks = () => {
         </View>
 
         <View style={styles.chiijokefromemxicnnCardsCol}>
-          {chiijokefromemxicnnJokeCategories.map(chiijokefromemxicnnCategory => (
-            <Pressable
-              key={chiijokefromemxicnnCategory.key}
-              onPress={() => {
-                chiijokefromemxicnnOpenCategory(chiijokefromemxicnnCategory);
-              }}
-              style={styles.chiijokefromemxicnnCardOuter}>
-              <LinearGradient
-                colors={chiijokefromemxicnnCategory.gradient}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 1}}
-                style={[
-                  styles.chiijokefromemxicnnCardGradient,
-                  {borderColor: chiijokefromemxicnnCategory.border},
-                ]}>
-                <View style={styles.chiijokefromemxicnnCardInner}>
-                  <View style={styles.chiijokefromemxicnnCardTopRow}>
-                    <View style={styles.chiijokefromemxicnnCardIconWrap}>
-                      <Text style={styles.chiijokefromemxicnnCardIcon}>
-                        {chiijokefromemxicnnCategory.icon}
-                      </Text>
+          {chiijokefromemxicnnJokeCategories.map(
+            chiijokefromemxicnnCategory => (
+              <Pressable
+                key={chiijokefromemxicnnCategory.key}
+                onPress={() => {
+                  chiijokefromemxicnnOpenCategory(chiijokefromemxicnnCategory);
+                }}
+                style={styles.chiijokefromemxicnnCardOuter}>
+                <LinearGradient
+                  colors={chiijokefromemxicnnCategory.gradient}
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 1}}
+                  style={[
+                    styles.chiijokefromemxicnnCardGradient,
+                    {borderColor: chiijokefromemxicnnCategory.border},
+                  ]}>
+                  <View style={styles.chiijokefromemxicnnCardInner}>
+                    <View style={styles.chiijokefromemxicnnCardTopRow}>
+                      <View style={styles.chiijokefromemxicnnCardIconWrap}>
+                        <Text style={styles.chiijokefromemxicnnCardIcon}>
+                          {chiijokefromemxicnnCategory.icon}
+                        </Text>
+                      </View>
+                      <View style={styles.chiijokefromemxicnnCardTitleCol}>
+                        <Text style={styles.chiijokefromemxicnnCardTitle}>
+                          {chiijokefromemxicnnCategory.title}
+                        </Text>
+                        <Text style={styles.chiijokefromemxicnnCardSubtitle}>
+                          {chiijokefromemxicnnCategory.subtitle}
+                        </Text>
+                        <Text style={styles.chiijokefromemxicnnCardDesc}>
+                          {chiijokefromemxicnnCategory.description}
+                        </Text>
+                      </View>
+                      <Text style={styles.chiijokefromemxicnnCardArrow}>→</Text>
                     </View>
-                    <View style={styles.chiijokefromemxicnnCardTitleCol}>
-                      <Text style={styles.chiijokefromemxicnnCardTitle}>
-                        {chiijokefromemxicnnCategory.title}
-                      </Text>
-                      <Text style={styles.chiijokefromemxicnnCardSubtitle}>
-                        {chiijokefromemxicnnCategory.subtitle}
-                      </Text>
-                      <Text style={styles.chiijokefromemxicnnCardDesc}>
-                        {chiijokefromemxicnnCategory.description}
-                      </Text>
-                    </View>
-                    <Text style={styles.chiijokefromemxicnnCardArrow}>→</Text>
-                  </View>
 
-                  <View style={styles.chiijokefromemxicnnCardBottomRow}>
-                    <Text style={styles.chiijokefromemxicnnCardCount}>
-                      {Math.min(6, chiijokefromemxicnnCategory.jokes.length)}{' '}
-                      jokes available
-                    </Text>
-                    <View style={styles.chiijokefromemxicnnTapPill}>
-                      <Text style={styles.chiijokefromemxicnnTapPillText}>
-                        TAP TO READ
+                    <View style={styles.chiijokefromemxicnnCardBottomRow}>
+                      <Text style={styles.chiijokefromemxicnnCardCount}>
+                        {Math.min(6, chiijokefromemxicnnCategory.jokes.length)}{' '}
+                        jokes available
                       </Text>
+                      <View style={styles.chiijokefromemxicnnTapPill}>
+                        <Text style={styles.chiijokefromemxicnnTapPillText}>
+                          TAP TO READ
+                        </Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              </LinearGradient>
-            </Pressable>
-          ))}
+                </LinearGradient>
+              </Pressable>
+            ),
+          )}
         </View>
 
         <View style={styles.chiijokefromemxicnnSurpriseOuter}>
@@ -156,7 +159,7 @@ const Chiijokefromemxicnnjks = () => {
           </Pressable>
         </View>
       </ScrollView>
-    </View>
+    </Chiijokefromemxicnnback>
   );
 };
 
@@ -253,7 +256,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 18,
   },
-  // Wrapper for padding inside gradient container
+
   chiijokefromemxicnnCardInner: {
     padding: 16,
   },

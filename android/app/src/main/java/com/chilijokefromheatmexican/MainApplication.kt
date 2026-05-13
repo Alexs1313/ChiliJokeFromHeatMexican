@@ -1,4 +1,4 @@
-package com.chilijokefromheatmexican
+package com.chili.joke.from.mexican
 
 import android.app.Application
 import com.facebook.react.PackageList

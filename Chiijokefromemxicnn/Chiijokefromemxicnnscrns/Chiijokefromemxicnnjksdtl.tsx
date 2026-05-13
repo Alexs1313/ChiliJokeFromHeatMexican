@@ -14,6 +14,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Chiijokefromemxicnnback from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnback';
 
 type ChiijokefromemxicnnJksDtlParams = {
   categoryKey?: string;
@@ -158,7 +159,7 @@ const Chiijokefromemxicnnjksdtl = () => {
   };
 
   return (
-    <View style={styles.chiijokefromemxicnnRoot}>
+    <Chiijokefromemxicnnback>
       <LinearGradient
         colors={['#600B1ACC', '#00000000']}
         start={{x: 0.5, y: 0}}
@@ -251,7 +252,7 @@ const Chiijokefromemxicnnjksdtl = () => {
 
         <View style={styles.chiijokefromemxicnnBottomPad} />
       </ScrollView>
-    </View>
+    </Chiijokefromemxicnnback>
   );
 };
 

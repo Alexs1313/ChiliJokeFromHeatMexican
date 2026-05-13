@@ -1,4 +1,4 @@
-package com.chilijokefromheatmexican
+package com.chili.joke.from.mexican
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

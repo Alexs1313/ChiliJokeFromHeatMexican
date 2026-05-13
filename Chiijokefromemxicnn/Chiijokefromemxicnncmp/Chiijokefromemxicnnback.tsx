@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Chiijokefromemxicnnback = ({
   children,
@@ -10,14 +11,16 @@ const Chiijokefromemxicnnback = ({
   bounces?: boolean;
 }) => {
   return (
-    <View style={styles.cozyrabtteacorneercontainer}>
+    <LinearGradient
+      colors={['rgb(49, 8, 12)', 'rgb(21, 2, 2)']}
+      style={styles.cozyrabtteacorneercontainer}>
       <ScrollView
         bounces={bounces}
         contentContainerStyle={styles.cozyrabtteacorneerscrollContent}
         showsVerticalScrollIndicator={false}>
         {children}
       </ScrollView>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -26,7 +29,6 @@ export default Chiijokefromemxicnnback;
 const styles = StyleSheet.create({
   cozyrabtteacorneercontainer: {
     flex: 1,
-    backgroundColor: '#0A1810',
   },
   cozyrabtteacorneerscrollContent: {
     flexGrow: 1,

@@ -13,6 +13,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import Chiijokefromemxicnnback from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnback';
 
 const Chiijokefromemxicnngmp = () => {
   const [chiijokefromemxicnnPlayerCount, setChiijokefromemxicnnPlayerCount] =
@@ -207,7 +208,7 @@ const Chiijokefromemxicnngmp = () => {
       : 0;
 
   return (
-    <View style={styles.chiijokefromemxicnnRoot}>
+    <Chiijokefromemxicnnback>
       <ScrollView
         contentContainerStyle={styles.chiijokefromemxicnnScrollContent}
         showsVerticalScrollIndicator={false}
@@ -638,7 +639,7 @@ const Chiijokefromemxicnngmp = () => {
           </>
         ) : null}
       </ScrollView>
-    </View>
+    </Chiijokefromemxicnnback>
   );
 };
 

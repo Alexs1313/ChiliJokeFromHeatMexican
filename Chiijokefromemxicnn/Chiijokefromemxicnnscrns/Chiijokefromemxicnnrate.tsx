@@ -19,6 +19,7 @@ import {
   chiijokefromemxicnnRateGoodPhrases,
   chiijokefromemxicnnRateLoaderHtml,
 } from '../Chiijokefromemxicnndata/chiijokefromemxicnndatarate';
+import Chiijokefromemxicnnback from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnback';
 
 const Chiijokefromemxicnnrate = () => {
   const [chiijokefromemxicnnPhase, setChiijokefromemxicnnPhase] = useState<
@@ -105,7 +106,7 @@ const Chiijokefromemxicnnrate = () => {
   const chiijokefromemxicnnCanJudge = chiijokefromemxicnnJoke.trim().length > 0;
 
   return (
-    <View style={styles.chiijokefromemxicnnRoot}>
+    <Chiijokefromemxicnnback>
       <ScrollView
         contentContainerStyle={styles.chiijokefromemxicnnScrollContent}
         showsVerticalScrollIndicator={false}
@@ -347,7 +348,7 @@ const Chiijokefromemxicnnrate = () => {
           </>
         ) : null}
       </ScrollView>
-    </View>
+    </Chiijokefromemxicnnback>
   );
 };
 

@@ -13,6 +13,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Chiijokefromemxicnnback from '../Chiijokefromemxicnncmp/Chiijokefromemxicnnback';
 
 const Chiijokefromemxicnnstrs = () => {
   const navigation = useNavigation() as any;
@@ -70,7 +71,7 @@ const Chiijokefromemxicnnstrs = () => {
   }, [chiijokefromemxicnnFavFirst, chiijokefromemxicnnFavIds]);
 
   return (
-    <View style={styles.chiijokefromemxicnnRoot}>
+    <Chiijokefromemxicnnback>
       <ScrollView
         style={styles.chiijokefromemxicnnScroll}
         contentContainerStyle={styles.chiijokefromemxicnnScrollContent}
@@ -196,7 +197,7 @@ const Chiijokefromemxicnnstrs = () => {
           })}
         </View>
       </ScrollView>
-    </View>
+    </Chiijokefromemxicnnback>
   );
 };
 
