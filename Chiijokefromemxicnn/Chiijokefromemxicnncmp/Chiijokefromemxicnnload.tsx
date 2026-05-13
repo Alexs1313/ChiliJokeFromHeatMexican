@@ -33,7 +33,7 @@ const Chiijokefromemxicnnload = () => {
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Image
             source={require('../../assets/i/chiijokefromemxicload.png')}
-            style={{}}
+            style={{width: 200, height: 200, borderRadius: 48}}
           />
         </View>
       </ScrollView>
