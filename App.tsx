@@ -1,11 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
 
-import Chiijokefromemxicnnstak from './Chiijokefromemxicnnnav/Chiijokefromemxicnnstak.tsx';
+import JokeFromhtmexhumrstak from './JokeFromhtmexhumrnav/JokeFromhtmexhumrstak.tsx';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Chiijokefromemxicnnstak />
+      <JokeFromhtmexhumrstak />
     </NavigationContainer>
   );
 };
