@@ -1,11 +1,12 @@
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
 
-import JokeFromhtmexhumrstak from './JokeFromhtmexhumrnav/JokeFromhtmexhumrstak.tsx';
+import {NavigationContainer} from '@react-navigation/native';
+import RootStack from './src/navigation/RootStack';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <JokeFromhtmexhumrstak />
+      <RootStack />
     </NavigationContainer>
   );
 };
