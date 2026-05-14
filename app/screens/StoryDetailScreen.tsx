@@ -1,33 +1,26 @@
-// details
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useMemo, useState} from 'react';
 
 import {useNavigation, useRoute} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  Pressable,
-  ScrollView,
-  Share,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, Share, StyleSheet, Text, View} from 'react-native';
 
+import BackPillButton from '../components/ui/BackPillButton';
+import StoryDetailActionRow from '../components/ui/StoryDetailActionRow';
+import {STORAGE_KEYS} from '../constants';
 import type {StoryDetailParams} from '../types';
 
 const StoryDetailScreen = () => {
   const navigation = useNavigation() as any;
   const route = useRoute();
-  const params =
-    (route.params as StoryDetailParams | undefined) ?? undefined;
+  const params = (route.params as StoryDetailParams | undefined) ?? undefined;
 
   const storyId = params?.id ?? '';
   const title = params?.title ?? '';
   const icon = params?.icon ?? '📖';
   const body = params?.body ?? '';
 
-  const favKey = 'chili:favStories';
+  const favKey = STORAGE_KEYS.favStories;
   const [fav, setfav] = useState(false);
 
   useMemo(() => {
@@ -43,7 +36,7 @@ const StoryDetailScreen = () => {
         setfav(false);
       }
     })();
-  }, [storyId]);
+  }, [storyId, favKey]);
 
   const toggleFav = async () => {
     try {
@@ -53,10 +46,7 @@ const StoryDetailScreen = () => {
       const next = list.includes(storyId)
         ? list.filter(x => x !== storyId)
         : [...list, storyId];
-      await AsyncStorage.setItem(
-        favKey,
-        JSON.stringify(next),
-      );
+      await AsyncStorage.setItem(favKey, JSON.stringify(next));
       setfav(next.includes(storyId));
     } catch {
       console.log('error');
@@ -85,12 +75,7 @@ const StoryDetailScreen = () => {
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          hitSlop={10}
-          style={styles.backPill}>
-          <Text style={styles.backText}>← Back</Text>
-        </Pressable>
+        <BackPillButton onPress={() => navigation.goBack()} />
 
         <View style={styles.headerRow}>
           <LinearGradient
@@ -98,21 +83,15 @@ const StoryDetailScreen = () => {
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
             style={styles.iconWrap}>
-            <Text style={styles.iconText}>
-              {icon}
-            </Text>
+            <Text style={styles.iconText}>{icon}</Text>
           </LinearGradient>
           <View style={styles.headerCol}>
-            <Text style={styles.title}>
-              {title}
-            </Text>
+            <Text style={styles.title}>{title}</Text>
             <Text style={styles.byline}>😃 by Miguel</Text>
           </View>
         </View>
 
-        <Text style={styles.body}>
-          {body}
-        </Text>
+        <Text style={styles.body}>{body}</Text>
 
         <View style={styles.quoteCard}>
           <Text style={styles.quoteText}>
@@ -122,32 +101,11 @@ const StoryDetailScreen = () => {
           </Text>
         </View>
 
-        <View style={styles.btnRow}>
-          <Pressable
-            onPress={toggleFav}
-            style={[
-              styles.btn,
-              styles.btnGhost,
-              fav && styles.btnGhostOn,
-            ]}>
-            <Text style={styles.btnText}>
-              {fav ? '★ Unfavorite' : '☆ Favorite'}
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={share} style={{flex: 1}}>
-            <LinearGradient
-              colors={['#600B1A', '#9F4A0A']}
-              style={[
-                styles.btn,
-                styles.btnPrimary,
-              ]}>
-              <Text style={styles.btnPrimaryText}>
-                📤 Share
-              </Text>
-            </LinearGradient>
-          </Pressable>
-        </View>
+        <StoryDetailActionRow
+          isFavorite={fav}
+          onToggleFavorite={toggleFav}
+          onShare={share}
+        />
       </ScrollView>
     </View>
   );
@@ -190,22 +148,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
 
-  backPill: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 999,
-    backgroundColor: '#FFFFFF10',
-    borderWidth: 1,
-    borderColor: '#FFFFFF14',
-    marginBottom: 14,
-  },
-  backText: {
-    color: '#FFFFFFCC',
-    fontSize: 13,
-    fontWeight: '700',
-  },
-
   iconText: {
     fontSize: 22,
   },
@@ -246,41 +188,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
     lineHeight: 18,
-  },
-
-  btnRow: {
-    marginTop: 16,
-    flexDirection: 'row',
-    gap: 12,
-  },
-  btn: {
-    flex: 1,
-    height: 54,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-  },
-  btnGhost: {
-    backgroundColor: '#FFFFFF12',
-    borderColor: '#FFFFFF1A',
-  },
-  btnGhostOn: {
-    backgroundColor: '#E6AD4C26',
-    borderColor: '#E6AD4C66',
-  },
-  btnText: {
-    color: '#FFFFFFCC',
-    fontSize: 14,
-    fontWeight: '800',
-  },
-  btnPrimary: {
-    backgroundColor: '#7A1E16',
-    borderColor: '#7A1E1640',
-  },
-  btnPrimaryText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '800',
   },
 });

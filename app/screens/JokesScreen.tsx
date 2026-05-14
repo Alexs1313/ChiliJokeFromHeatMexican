@@ -4,7 +4,9 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import type {JokeCategory} from '../types';
+import {defaultJokeAccent} from '../constants';
 import {jokeCategories} from '../data/jokeCategories';
+import SurpriseMeCard from '../components/ui/SurpriseMeCard';
 import {
   Image,
   Pressable,
@@ -27,7 +29,7 @@ const JokesScreen = () => {
       quote: category.quote,
       tag: category.tag,
       icon: category.icon,
-      accent: '#E2A63B',
+      accent: defaultJokeAccent,
       jokes: category.jokes,
     });
   };
@@ -130,29 +132,17 @@ const JokesScreen = () => {
           ))}
         </View>
 
-        <View style={styles.surpriseOuter}>
-          <Pressable
-            onPress={() => {
-              const idx = Math.floor(
-                Math.random() * jokeCategories.length,
-              );
-              const pick = jokeCategories[idx];
-              if (pick) {
-                openCategory(pick);
-              }
-            }}
-            style={styles.surpriseBtn}>
-            <Text style={styles.dice}>🎲</Text>
-            <View>
-              <Text style={styles.surpriseTitle}>
-                Surprise Me!
-              </Text>
-              <Text style={styles.surpriseSubtitle}>
-                Random joke from any category
-              </Text>
-            </View>
-          </Pressable>
-        </View>
+        <SurpriseMeCard
+          onPress={() => {
+            const idx = Math.floor(
+              Math.random() * jokeCategories.length,
+            );
+            const pick = jokeCategories[idx];
+            if (pick) {
+              openCategory(pick);
+            }
+          }}
+        />
       </ScrollView>
     </View>
   );
@@ -316,36 +306,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0.2,
-  },
-
-  surpriseOuter: {
-    marginTop: 16,
-    borderRadius: 18,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#B07A1230',
-  },
-  surpriseBtn: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    justifyContent: 'center',
-    backgroundColor: '#0A0707',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  dice: {
-    fontSize: 22,
-  },
-  surpriseTitle: {
-    color: '#E2A63B',
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  surpriseSubtitle: {
-    marginTop: 4,
-    color: '#FFFFFF9E',
-    fontSize: 12.5,
-    fontWeight: '500',
   },
 });

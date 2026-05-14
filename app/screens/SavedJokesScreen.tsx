@@ -5,7 +5,6 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 import {
   Image,
-  Pressable,
   ScrollView,
   Share,
   StyleSheet,
@@ -13,9 +12,13 @@ import {
   View,
 } from 'react-native';
 
+import AccentOutlineButton from '../components/ui/AccentOutlineButton';
+import SavedJokeCardActions from '../components/ui/SavedJokeCardActions';
+import {STORAGE_KEYS} from '../constants';
+
 const SavedJokesScreen = () => {
   const navigation = useNavigation() as any;
-  const allSavedKey = 'chili:savedJokes:all';
+  const allSavedKey = STORAGE_KEYS.allSavedJokes;
 
   const [items, setitems] = useState<
     {
@@ -35,7 +38,7 @@ const SavedJokesScreen = () => {
     } catch {
       setitems([]);
     }
-  }, []);
+  }, [allSavedKey]);
 
   useEffect(() => {
     load();
@@ -103,18 +106,10 @@ const SavedJokesScreen = () => {
 
                 <Text style={styles.jokeText}>{item.joke}</Text>
 
-                <View style={styles.actions}>
-                  <Pressable
-                    onPress={() => share(item.categoryTitle, item.joke)}
-                    style={styles.shareBtn}>
-                    <Text style={styles.shareText}>📤 Share</Text>
-                  </Pressable>
-                  <Pressable
-                    onPress={() => remove(item.id)}
-                    style={styles.trashBtn}>
-                    <Text style={styles.trashText}>🗑️</Text>
-                  </Pressable>
-                </View>
+                <SavedJokeCardActions
+                  onShare={() => share(item.categoryTitle, item.joke)}
+                  onRemove={() => remove(item.id)}
+                />
               </View>
             ))}
           </View>
@@ -130,11 +125,10 @@ const SavedJokesScreen = () => {
               Go to Jokes and save your favorites. They will be right here
               waiting for you, like a loyal taco.
             </Text>
-            <Pressable onPress={goToJokes} style={styles.emptyBtn}>
-              <Text style={styles.emptyBtnText}>
-                🌶️ Head to Jokes tab to start saving!
-              </Text>
-            </Pressable>
+            <AccentOutlineButton
+              onPress={goToJokes}
+              label="🌶️ Head to Jokes tab to start saving!"
+            />
           </View>
         )}
 
@@ -232,11 +226,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
-  actions: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 14,
-  },
   empty: {
     alignItems: 'center',
     paddingTop: 24,
@@ -252,38 +241,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 12,
   },
-  shareBtn: {
-    flex: 1,
-    height: 43,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#600B1A4D',
-    borderWidth: 1,
-    borderColor: '#600B1A66',
-  },
-  shareText: {
-    color: '#FFFFFF',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  trashBtn: {
-    width: 48,
-    height: 43,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    backgroundColor: '#FF3D5A1A',
-    borderWidth: 1,
-    borderColor: '#FF3D5A33',
-  },
-  trashText: {
-    color: '#FFFFFFB8',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-
   emptyBody: {
     color: '#FFFFFF80',
     fontSize: 14,
@@ -293,21 +250,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     marginBottom: 18,
   },
-  emptyBtn: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 20,
-    backgroundColor: '#E6AD4C1A',
-    borderWidth: 1,
-    borderColor: '#E6AD4C33',
-  },
-  emptyBtnText: {
-    color: '#E2A63B',
-    fontSize: 13,
-    fontWeight: '700',
-    textAlign: 'center',
-  },
-
   bottomPad: {
     height: 8,
   },

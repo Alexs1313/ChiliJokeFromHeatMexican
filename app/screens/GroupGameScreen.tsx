@@ -5,7 +5,6 @@ import React, {useMemo, useState} from 'react';
 import {gamePrompts} from '../data/gamePrompts';
 import {
   Image,
-  Pressable,
   ScrollView,
   Share,
   StyleSheet,
@@ -13,6 +12,12 @@ import {
   TextInput,
   View,
 } from 'react-native';
+
+import ChiliGradientButton from '../components/ui/ChiliGradientButton';
+import EndingVoteOptionCard from '../components/ui/EndingVoteOptionCard';
+import PlayerCountPill from '../components/ui/PlayerCountPill';
+import ShareResultBackRow from '../components/ui/ShareResultBackRow';
+import SolidChiliButton from '../components/ui/SolidChiliButton';
 
 const GroupGameScreen = () => {
   const [playerCount, setplayerCount] =
@@ -270,40 +275,14 @@ const GroupGameScreen = () => {
               NUMBER OF PLAYERS
             </Text>
             <View style={styles.countRow}>
-              {[3, 4, 5].map(n => {
-                const selected = n === playerCount;
-                return (
-                  <Pressable
-                    style={{flex: 1}}
-                    key={n}
-                    onPress={() =>
-                      setPlayerCount(n as 3 | 4 | 5)
-                    }>
-                    <LinearGradient
-                      colors={
-                        selected
-                          ? ['#600B1A', '#9F4A0A']
-                          : [
-                              'rgba(255, 255, 255, 0.01)',
-                              'rgba(255, 255, 255, 0.02)',
-                            ]
-                      }
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 1}}
-                      style={[
-                        styles.countBtn,
-                        selected && styles.countBtnOn,
-                      ]}>
-                      <Text style={styles.countNumber}>
-                        {n}
-                      </Text>
-                      <Text style={styles.countLabel}>
-                        players
-                      </Text>
-                    </LinearGradient>
-                  </Pressable>
-                );
-              })}
+              {([3, 4, 5] as const).map(n => (
+                <PlayerCountPill
+                  key={n}
+                  value={n}
+                  selected={n === playerCount}
+                  onPress={() => setPlayerCount(n)}
+                />
+              ))}
             </View>
 
             <Text style={styles.sectionLabel}>
@@ -340,20 +319,15 @@ const GroupGameScreen = () => {
               </View>
             ) : null}
 
-            <Pressable
+            <SolidChiliButton
               onPress={startGame}
               disabled={!allNamesFilled}
-              style={[
-                styles.primaryBtn,
-                !allNamesFilled &&
-                  styles.primaryBtnDisabled,
-              ]}>
-              <Text style={styles.primaryText}>
-                {!allNamesFilled
+              label={
+                !allNamesFilled
                   ? 'Enter all names first'
-                  : '¡Vamos! Start Game 🎮'}
-              </Text>
-            </Pressable>
+                  : '¡Vamos! Start Game 🎮'
+              }
+            />
           </>
         ) : null}
 
@@ -412,21 +386,15 @@ const GroupGameScreen = () => {
               />
             </View>
 
-            <Pressable
+            <SolidChiliButton
               onPress={onSubmitEnding}
               disabled={!draft.trim()}
-              style={[
-                styles.primaryBtn,
-                !draft.trim() &&
-                  styles.primaryBtnDisabled,
-              ]}>
-              <Text style={styles.primaryText}>
-                {writerIdx ===
-                totalPlayers - 1
+              label={
+                writerIdx === totalPlayers - 1
                   ? 'Submit & Start Voting! 🗳️'
-                  : 'Submit & Pass Phone 📱'}
-              </Text>
-            </Pressable>
+                  : 'Submit & Pass Phone 📱'
+              }
+            />
           </>
         ) : null}
 
@@ -460,66 +428,32 @@ const GroupGameScreen = () => {
                 const isOwn = e.playerIdx === voterIdx;
                 const selected = selectedEnding === idx;
                 return (
-                  <Pressable
+                  <EndingVoteOptionCard
                     key={`${e.playerIdx}-${idx}`}
+                    index={idx}
+                    text={e.text}
+                    isOwn={isOwn}
+                    selected={selected}
                     onPress={() => {
                       if (isOwn) {
                         return;
                       }
                       setselectedEnding(idx);
                     }}
-                    style={[
-                      styles.endingCard,
-                      selected && styles.endingCardOn,
-                      isOwn && styles.endingCardDisabled,
-                    ]}>
-                    <View style={styles.endingIdxPill}>
-                      <Text style={styles.endingIdxText}>
-                        {idx + 1}
-                      </Text>
-                    </View>
-                    <View style={styles.endingTextCol}>
-                      {isOwn ? (
-                        <Text style={styles.endingHint}>
-                          (Your answer — can’t vote for yourself)
-                        </Text>
-                      ) : null}
-                      <Text style={styles.endingText}>
-                        {'"'}
-                        {e.text}
-                        {'"'}
-                      </Text>
-                    </View>
-                    <LinearGradient
-                      colors={['#600B1A', '#9F4A0A']}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 1}}
-                      style={styles.thumbPill}>
-                      <Text style={styles.thumbText}>👍</Text>
-                    </LinearGradient>
-                  </Pressable>
+                  />
                 );
               })}
             </View>
 
-            <Pressable
+            <ChiliGradientButton
               onPress={onVote}
-              disabled={selectedEnding === null}>
-              <LinearGradient
-                colors={['#600B1A', '#9F4A0A']}
-                style={[
-                  styles.primaryBtn,
-                  selectedEnding === null &&
-                    styles.primaryBtnDisabled,
-                ]}>
-                <Text style={styles.primaryText}>
-                  {voterIdx ===
-                  totalPlayers - 1
-                    ? 'Result'
-                    : 'Choose'}
-                </Text>
-              </LinearGradient>
-            </Pressable>
+              disabled={selectedEnding === null}
+              disabledOpacity={0.35}
+              label={
+                voterIdx === totalPlayers - 1 ? 'Result' : 'Choose'
+              }
+              containerStyle={{marginTop: 16}}
+            />
           </>
         ) : null}
 
@@ -587,30 +521,11 @@ const GroupGameScreen = () => {
               })}
             </View>
 
-            <View style={styles.btnRow}>
-              <Pressable
-                onPress={shareResults}
-                style={{flex: 1}}>
-                <LinearGradient
-                  colors={['#600B1A', '#9F4A0A']}
-                  style={[
-                    styles.btn,
-                    styles.btnPrimary,
-                  ]}>
-                  <Text style={styles.btnPrimaryText}>
-                    📤 Share Results
-                  </Text>
-                </LinearGradient>
-              </Pressable>
-              <Pressable
-                onPress={reset}
-                style={[
-                  styles.btn,
-                  styles.btnGhost,
-                ]}>
-                <Text style={styles.btnText}>Back</Text>
-              </Pressable>
-            </View>
+            <ShareResultBackRow
+              onShare={shareResults}
+              onBack={reset}
+              shareLabel="📤 Share Results"
+            />
           </>
         ) : null}
       </ScrollView>
@@ -712,32 +627,6 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 14,
   },
-  countBtn: {
-    flex: 1,
-    borderRadius: 16,
-    backgroundColor: '#FFFFFF0A',
-    borderWidth: 1,
-    borderColor: '#FFFFFF0F',
-    minHeight: 75,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  countBtnOn: {
-    backgroundColor: '#7A1E1633',
-    borderColor: '#7A1E1640',
-  },
-  countNumber: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '900',
-  },
-  countLabel: {
-    marginTop: 4,
-    color: '#FFFFFF9E',
-    fontSize: 12,
-    fontWeight: '400',
-  },
-
   namesCol: {
     gap: 12,
     marginBottom: 12,
@@ -885,25 +774,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
-  primaryBtn: {
-    marginTop: 16,
-    height: 54,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#7A1E16',
-    borderWidth: 1,
-    borderColor: '#7A1E1640',
-  },
-  primaryBtnDisabled: {
-    opacity: 0.35,
-  },
-  primaryText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '700',
-  },
-
   voteTurnCard: {
     borderRadius: 18,
     overflow: 'hidden',
@@ -936,66 +806,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 5,
   },
-  endingCard: {
-    borderRadius: 18,
-    backgroundColor: '#FFFFFF0A',
-    borderWidth: 1,
-    borderColor: '#FFFFFF0F',
-    padding: 14,
-    flexDirection: 'row',
-    gap: 12,
-    alignItems: 'center',
-    minHeight: 90,
-  },
-  endingCardOn: {
-    borderColor: '#E6AD4C66',
-    backgroundColor: '#FFFFFF0F',
-  },
-  endingCardDisabled: {
-    opacity: 0.35,
-  },
-  endingIdxPill: {
-    width: 28,
-    height: 28,
-    borderRadius: 10,
-    backgroundColor: '#7A1E16',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  endingIdxText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: '900',
-  },
-  endingTextCol: {
-    flex: 1,
-  },
-  endingHint: {
-    color: '#FFFFFF70',
-    fontSize: 11,
-    fontWeight: '400',
-    marginBottom: 6,
-  },
-  endingText: {
-    color: '#FFFFFFD6',
-    fontSize: 13,
-    fontWeight: '400',
-    lineHeight: 18,
-  },
-  thumbPill: {
-    width: 42,
-    height: 42,
-    borderRadius: 16,
-    backgroundColor: '#600B1A4D',
-    borderWidth: 1,
-    borderColor: '#600B1A66',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  thumbText: {
-    fontSize: 16,
-  },
-
   winnerCard: {
     borderRadius: 22,
     overflow: 'hidden',
@@ -1102,36 +912,5 @@ const styles = StyleSheet.create({
     color: '#E2A63B',
     fontSize: 13,
     fontWeight: '700',
-  },
-
-  btnRow: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  btn: {
-    flex: 1,
-    height: 53,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-  },
-  btnPrimary: {
-    backgroundColor: '#7A1E16',
-    borderColor: '#7A1E1640',
-  },
-  btnPrimaryText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  btnGhost: {
-    backgroundColor: '#FFFFFF12',
-    borderColor: '#FFFFFF14',
-  },
-  btnText: {
-    color: '#FFFFFFCC',
-    fontSize: 14,
-    fontWeight: '800',
   },
 });

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import RootStack from './src/navigation/RootStack';
+import StackNav from './app/navigation/StackNav';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <RootStack />
+      <StackNav />
     </NavigationContainer>
   );
 };

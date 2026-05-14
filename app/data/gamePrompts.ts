@@ -4,7 +4,7 @@ export const gamePrompts: string[] = [
   'During the village fiesta, the mariachi band suddenly stopped playing because…',
   'Miguel tried to impress everyone with his cooking skills, but after one loud explosion…',
   'The mysterious hot sauce bottle came with a warning label that said…',
-  'Three friends entered the taco eating contest, but halfway through the challenge…',
+  'Three friends signed up for a taco-eating challenge, but halfway through it…',
   'Juan bought the cheapest sombrero at the market and discovered it could actually…',
   'The old donkey escaped during the celebration and somehow ended up…',
   'When Sofia opened her burrito, she was shocked to find…',

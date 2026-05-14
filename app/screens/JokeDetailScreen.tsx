@@ -6,15 +6,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useMemo, useState} from 'react';
 
-import {
-  Pressable,
-  ScrollView,
-  Share,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, Share, StyleSheet, Text, View} from 'react-native';
 
+import BackPillButton from '../components/ui/BackPillButton';
+import JokeCardActionRow from '../components/ui/JokeCardActionRow';
+import {savedJokesCategoryKey, STORAGE_KEYS} from '../constants';
 import type {
   JokeDetailParams,
   SavedJokeItem,
@@ -40,10 +36,10 @@ const JokeDetailScreen = () => {
   const jokes = params?.jokes ?? [];
 
   const storageKey = useMemo(
-    () => `chili:savedJokes:${categoryKey}`,
+    () => savedJokesCategoryKey(categoryKey),
     [categoryKey],
   );
-  const allSavedKey = 'chili:savedJokes:all';
+  const allSavedKey = STORAGE_KEYS.allSavedJokes;
 
   const initialSaved = useMemo(
     () => new Array(jokes.length).fill(false) as boolean[],
@@ -155,12 +151,7 @@ const JokeDetailScreen = () => {
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          hitSlop={10}
-          style={styles.backPill}>
-          <Text style={styles.backText}>← Back</Text>
-        </Pressable>
+        <BackPillButton onPress={() => navigation.goBack()} />
 
         <View style={styles.header}>
           <Text style={styles.headerIcon}>
@@ -204,33 +195,11 @@ const JokeDetailScreen = () => {
 
               <Text style={styles.jokeBody}>{joke}</Text>
 
-              <View style={styles.actions}>
-                <Pressable
-                  onPress={() => toggleSaved(idx)}
-                  style={[
-                    styles.actionBtn,
-                    saved[idx]
-                      ? styles.actionBtnSaved
-                      : styles.actionBtnIdle,
-                  ]}>
-                  <Text style={styles.actionText}>
-                    {saved[idx] ? '🔖 Saved' : '🔖 Save'}
-                  </Text>
-                </Pressable>
-
-                <Pressable
-                  onPress={() => {
-                    shareJoke(joke);
-                  }}
-                  style={[
-                    styles.actionBtn,
-                    styles.shareBtn,
-                  ]}>
-                  <Text style={styles.actionText}>
-                    📤 Share
-                  </Text>
-                </Pressable>
-              </View>
+              <JokeCardActionRow
+                saved={Boolean(saved[idx])}
+                onToggleSave={() => toggleSaved(idx)}
+                onShare={() => shareJoke(joke)}
+              />
             </View>
           ))}
         </View>
@@ -244,17 +213,6 @@ const JokeDetailScreen = () => {
 export default JokeDetailScreen;
 
 const styles = StyleSheet.create({
-  backPill: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 999,
-    backgroundColor: '#FFFFFF10',
-    borderWidth: 1,
-    borderColor: '#FFFFFF14',
-    marginBottom: 14,
-  },
-
   root: {
     flexGrow: 1,
 
@@ -272,12 +230,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-  },
-
-  backText: {
-    color: '#FFFFFFCC',
-    fontSize: 13,
-    fontWeight: '700',
   },
 
   header: {
@@ -347,37 +299,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 20,
-  },
-
-  actions: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 14,
-  },
-  actionBtn: {
-    flex: 1,
-    height: 44,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-  },
-  actionBtnIdle: {
-    backgroundColor: '#FFFFFF12',
-    borderColor: '#FFFFFF14',
-  },
-  actionBtnSaved: {
-    backgroundColor: '#E6AD4C33',
-    borderColor: '#E6AD4C66',
-  },
-  shareBtn: {
-    backgroundColor: '#600B1A4D',
-    borderColor: '#600B1A66',
-  },
-  actionText: {
-    color: '#FFFFFFCC',
-    fontSize: 13,
-    fontWeight: '600',
   },
 
   bottomPad: {

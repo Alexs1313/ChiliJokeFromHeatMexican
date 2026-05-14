@@ -7,19 +7,23 @@ import {stories} from '../data/storiesData';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
+import FavoritesFirstToggle from '../components/ui/FavoritesFirstToggle';
+import FavoriteToggleButton from '../components/ui/FavoriteToggleButton';
+import MaroonGlassButton from '../components/ui/MaroonGlassButton';
+import {STORAGE_KEYS} from '../constants';
+
 const StoriesScreen = () => {
   const navigation = useNavigation() as any;
   const [favIds, setfavIds] = useState<string[]>([]);
   const [favFirst, setfavFirst] = useState(true);
 
-  const favKey = 'chili:favStories';
+  const favKey = STORAGE_KEYS.favStories;
 
   const loadFavs = useCallback(async () => {
     try {
@@ -29,7 +33,7 @@ const StoriesScreen = () => {
     } catch {
       setfavIds([]);
     }
-  }, []);
+  }, [favKey]);
 
   useFocusEffect(
     useCallback(() => {
@@ -100,13 +104,9 @@ const StoriesScreen = () => {
           </LinearGradient>
         </View>
 
-        <Pressable
+        <FavoritesFirstToggle
           onPress={() => setfavFirst(v => !v)}
-          style={styles.favFirstRow}>
-          <Text style={styles.favFirstStar}>⭐</Text>
-          <Text style={styles.favFirstText}>Favorites shown first</Text>
-          <View style={styles.favFirstSpacer} />
-        </Pressable>
+        />
 
         <View style={styles.list}>
           {sortedStories.map(story => {
@@ -136,19 +136,12 @@ const StoriesScreen = () => {
                 </View>
 
                 <View style={styles.storyBtnRow}>
-                  <Pressable
+                  <FavoriteToggleButton
+                    isFavorite={isFav}
                     onPress={() => toggleFav(story.id)}
-                    style={[
-                      styles.storyBtn,
-                      styles.storyBtnGhost,
-                      isFav && styles.storyBtnGhostOn,
-                    ]}>
-                    <Text style={styles.storyBtnText}>
-                      {isFav ? '★ Favorited' : '☆ Favorite'}
-                    </Text>
-                  </Pressable>
-
-                  <Pressable
+                  />
+                  <MaroonGlassButton
+                    label="📖 Read"
                     onPress={() =>
                       navigation.navigate('StoryDetail', {
                         id: story.id,
@@ -157,9 +150,7 @@ const StoriesScreen = () => {
                         body: story.body,
                       })
                     }
-                    style={[styles.storyBtn, styles.storyBtnPrimary]}>
-                    <Text style={styles.storyBtnPrimaryText}>📖 Read</Text>
-                  </Pressable>
+                  />
                 </View>
               </View>
             );
@@ -250,30 +241,6 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 
-  favFirstRow: {
-    borderRadius: 14,
-    backgroundColor: '#E6AD4C14',
-    borderWidth: 1,
-    borderColor: '#FFFFFF0F',
-    paddingVertical: 13,
-    paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 14,
-  },
-  favFirstStar: {
-    fontSize: 14,
-  },
-  favFirstText: {
-    color: '#E2A63B',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  favFirstSpacer: {
-    flex: 1,
-  },
-
   list: {
     gap: 14,
   },
@@ -341,35 +308,5 @@ const styles = StyleSheet.create({
     marginTop: 14,
     flexDirection: 'row',
     gap: 12,
-  },
-  storyBtn: {
-    flex: 1,
-    height: 44,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-  },
-  storyBtnGhost: {
-    backgroundColor: '#FFFFFF0F',
-    borderColor: '#FFFFFF14',
-  },
-  storyBtnGhostOn: {
-    backgroundColor: '#E6AD4C33',
-    borderColor: '#E6AD4C66',
-  },
-  storyBtnText: {
-    color: '#FFFFFFCC',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  storyBtnPrimary: {
-    backgroundColor: '#600B1A4D',
-    borderColor: '#600B1A66',
-  },
-  storyBtnPrimaryText: {
-    color: '#FFFFFF',
-    fontSize: 13,
-    fontWeight: '700',
   },
 });

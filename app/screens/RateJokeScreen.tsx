@@ -3,7 +3,6 @@ import React, {useCallback, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   Image,
-  Pressable,
   ScrollView,
   Share,
   StyleSheet,
@@ -14,6 +13,8 @@ import {
 import {useFocusEffect} from '@react-navigation/native';
 import WebView from 'react-native-webview';
 
+import ChiliGradientButton from '../components/ui/ChiliGradientButton';
+import ShareResultBackRow from '../components/ui/ShareResultBackRow';
 import {
   rateBadPhrases,
   rateGoodPhrases,
@@ -177,25 +178,16 @@ const RateJokeScreen = () => {
               </Text>
             </View>
 
-            <Pressable
+            <ChiliGradientButton
               onPress={start}
-              disabled={!canJudge}>
-              <LinearGradient
-                colors={['#600B1A', '#9F4A0A']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 1}}
-                style={[
-                  styles.primaryBtn,
-                  !canJudge &&
-                    styles.primaryBtnDisabled,
-                ]}>
-                <Text style={styles.primaryText}>
-                  {canJudge
-                    ? '😃 Let Miguel Judge!'
-                    : 'Write your joke first...'}
-                </Text>
-              </LinearGradient>
-            </Pressable>
+              disabled={!canJudge}
+              label={
+                canJudge
+                  ? '😃 Let Miguel Judge!'
+                  : 'Write your joke first...'
+              }
+              containerStyle={{marginTop: 16}}
+            />
           </>
         ) : null}
 
@@ -320,26 +312,12 @@ const RateJokeScreen = () => {
               </Text>
             </View>
 
-            <View style={styles.resultBtnRow}>
-              <Pressable
-                onPress={shareResult}
-                style={{flex: 1}}>
-                <LinearGradient
-                  colors={['#600B1A', '#9F4A0A']}
-                  start={{x: 0, y: 0}}
-                  end={{x: 1, y: 1}}
-                  style={styles.shareBtn}>
-                  <Text style={styles.shareText}>
-                    📤 Share Result
-                  </Text>
-                </LinearGradient>
-              </Pressable>
-              <Pressable
-                onPress={reset}
-                style={styles.backBtn}>
-                <Text style={styles.backText}>Back</Text>
-              </Pressable>
-            </View>
+            <ShareResultBackRow
+              onShare={shareResult}
+              onBack={reset}
+              shareLabel="📤 Share Result"
+              rowStyle={{marginTop: 20}}
+            />
           </>
         ) : null}
       </ScrollView>
@@ -470,25 +448,6 @@ const styles = StyleSheet.create({
     fontSize: 12.5,
     fontWeight: '400',
     lineHeight: 18,
-  },
-
-  primaryBtn: {
-    marginTop: 16,
-    height: 54,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#7A1E16',
-    borderWidth: 1,
-    borderColor: '#7A1E1640',
-  },
-  primaryBtnDisabled: {
-    opacity: 0.55,
-  },
-  primaryText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '800',
   },
 
   loadingWrap: {
@@ -631,39 +590,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 18,
-  },
-  resultBtnRow: {
-    marginTop: 20,
-    flexDirection: 'row',
-    gap: 12,
-  },
-  shareBtn: {
-    height: 54,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#7A1E16',
-    borderWidth: 1,
-    borderColor: '#7A1E1640',
-  },
-  shareText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '800',
-  },
-  backBtn: {
-    flex: 1,
-    height: 54,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF12',
-    borderWidth: 1,
-    borderColor: '#FFFFFF1A',
-  },
-  backText: {
-    color: '#FFFFFFCC',
-    fontSize: 14,
-    fontWeight: '800',
   },
 });

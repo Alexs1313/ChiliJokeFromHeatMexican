@@ -1,6 +1,5 @@
 import type {OnboardingStep} from '../types';
 
-/** Onboarding slides. */
 export const onboardingSteps: OnboardingStep[] = [
   {
     chip: 'Your Comedy Companion',
@@ -26,7 +25,7 @@ export const onboardingSteps: OnboardingStep[] = [
   {
     chip: 'Group Story Activity',
     title: 'Create With Friends',
-    subtitle: 'Party Story Fun 🎉',
+    subtitle: 'Group Story Fun 🎉',
     body: 'Gather 3 to 5 friends, complete a funny unfinished story, and read everyone’s creative ending. Participants can vote for the most entertaining response after each round.',
     image: require('../assets/i/chiijokefromemxiconb4.png'),
   },
