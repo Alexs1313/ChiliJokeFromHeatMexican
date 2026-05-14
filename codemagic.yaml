@@ -1,20 +1,20 @@
 workflows:
   ios-workflow:
-    name: 'Chili Hot Joke'
+    name: 'Chili Joke From Heat'
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: ChiliHotJokeNewAPIKey
+      app_store_connect: ChiliHotJokeNeewApiKey
     environment:
       xcode: '26.0'
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.nwlele.dldloog.jgk
+        bundle_identifier: com.fromsk.ghje.tyud
       vars:
-        BUNDLE_ID: com.nwlele.dldloog.jgk
+        BUNDLE_ID: com.fromsk.ghje.tyud
         XCODE_WORKSPACE: ChiliJokeFromHeatMexican.xcworkspace
         XCODE_SCHEME: ChiliJokeFromHeatMexican
-        APP_STORE_APPLE_ID: 6769433312
+        APP_STORE_APPLE_ID: 6769505022
     scripts:
       - name: Install npm dependencies
         script: |

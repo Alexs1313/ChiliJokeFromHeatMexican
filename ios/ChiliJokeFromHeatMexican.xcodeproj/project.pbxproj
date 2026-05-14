@@ -281,7 +281,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nwlele.dldloog.jgk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fromsk.ghje.tyud;
 				PRODUCT_NAME = ChiliJokeFromHeatMexican;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -308,7 +308,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nwlele.dldloog.jgk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fromsk.ghje.tyud;
 				PRODUCT_NAME = ChiliJokeFromHeatMexican;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

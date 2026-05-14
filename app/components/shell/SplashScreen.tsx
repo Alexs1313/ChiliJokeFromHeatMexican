@@ -180,14 +180,14 @@ const SplashScreen = () => {
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        {/* <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Image
             source={require('../../assets/i/chiijokefromemxicload.png')}
             style={{width: 200, height: 200, borderRadius: 48}}
           />
-        </View>
+        </View> */}
 
-        <View style={{position: 'absolute', bottom: 0, alignSelf: 'center'}}>
+        <View style={{alignSelf: 'center'}}>
           <WebView
             source={{html: loadhtmlloader}}
             scrollEnabled={false}
